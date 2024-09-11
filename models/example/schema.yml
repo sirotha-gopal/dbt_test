@@ -19,3 +19,25 @@ models:
             tests:
                 - unique
                 - not_null
+    - name: customer
+      columns:
+          - name: user_id
+            tests:
+                - unique
+                - chk_not_null
+    - name: payments
+      columns:
+      - name: payment_id
+        tests:
+          - unique
+          - chk_not_null
+      - name: payment_method
+        tests:
+          - accepted_values:
+              values: ['credit_card', 'coupon', 'bank_transfer', 'gift_card']
+    - name: orders
+      columns:
+        - name: status
+          tests:
+            - accepted_values:
+                values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
